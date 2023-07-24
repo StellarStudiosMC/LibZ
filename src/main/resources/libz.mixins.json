@@ -4,7 +4,11 @@
   "package": "net.libz.mixin",
   "compatibilityLevel": "JAVA_17",
   "plugin": "net.libz.mixin.LibzMixinPlugin",
-  "mixins": [],
+  "mixins": [
+    "config.AutoConfigAccess",
+    "config.PlayerManagerMixin",
+    "config.MarshallerImplMixin"
+  ],
   "client": [
     "client.InventoryScreenMixin",
     "client.HandledScreenMixin",

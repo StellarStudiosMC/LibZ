@@ -9,6 +9,8 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.libz.api.*;
+import net.libz.init.KeyInit;
+import net.libz.network.LibzClientPacket;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
@@ -23,6 +25,8 @@ public class LibzClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        LibzClientPacket.init();
+        KeyInit.init();
     }
 
 }
