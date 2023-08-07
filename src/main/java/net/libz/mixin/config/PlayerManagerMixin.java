@@ -51,25 +51,25 @@ public class PlayerManagerMixin {
         //     }
         // });
 
-        // if (ConfigInit.CONFIG.syncConfig) {
-        //     if (!connection.isLocal()) {
-        //         AutoConfigAccess.getHolders().forEach((data, holder) -> {
-        //             if (holder.getConfig() instanceof ConfigSync) {
-        //                 ConfigSerializer<?> configSerializer = ((ConfigManager<?>) holder).getSerializer();
+        if (ConfigInit.CONFIG.syncConfig) {
+            if (!connection.isLocal()) {
+                AutoConfigAccess.getHolders().forEach((data, holder) -> {
+                    if (holder.getConfig() instanceof ConfigSync) {
+                        ConfigSerializer<?> configSerializer = ((ConfigManager<?>) holder).getSerializer();
 
-        //                 if (configSerializer instanceof GsonConfigSerializer || configSerializer instanceof JanksonConfigSerializer) {
-        //                     LibzServerPacket.writeS2CConfigPacket(serverPlayNetworkHandler, ((ConfigManager<?>) holder).getDefinition().name(), configSerializer instanceof GsonConfigSerializer);
-        //                 }
-        //             }
-        //         });
-        //     } else {
-        //         AutoConfigAccess.getHolders().forEach((data, holder) -> {
-        //             if (holder.getConfig() instanceof ConfigSync) {
-        //                 holder.load();
-        //                 ((ConfigSync) holder.getConfig()).updateConfig(holder.getConfig());
-        //             }
-        //         });
-        //     }
-        // }
+                        if (configSerializer instanceof GsonConfigSerializer || configSerializer instanceof JanksonConfigSerializer) {
+                            LibzServerPacket.writeS2CConfigPacket(serverPlayNetworkHandler, ((ConfigManager<?>) holder).getDefinition().name(), configSerializer instanceof GsonConfigSerializer);
+                        }
+                    }
+                });
+            } else {
+                AutoConfigAccess.getHolders().forEach((data, holder) -> {
+                    if (holder.getConfig() instanceof ConfigSync) {
+                        holder.load();
+                        ((ConfigSync) holder.getConfig()).updateConfig(holder.getConfig());
+                    }
+                });
+            }
+        }
     }
 }
