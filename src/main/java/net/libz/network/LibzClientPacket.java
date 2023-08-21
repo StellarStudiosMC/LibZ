@@ -14,6 +14,7 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.api.SyntaxEr
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.libz.access.MouseAccessor;
 import net.libz.api.ConfigSync;
 import net.libz.mixin.config.AutoConfigAccess;
 import net.libz.util.ConfigHelper;
@@ -23,6 +24,15 @@ import net.libz.util.ConfigHelper;
 public class LibzClientPacket {
 
     public static void init() {
+
+        ClientPlayNetworking.registerGlobalReceiver(LibzServerPacket.SET_MOUSE_POSITION, (client, handler, buf, sender) -> {
+            int mouseX = buf.readInt();
+            int mouseY = buf.readInt();
+            client.execute(() -> {
+                ((MouseAccessor) client.mouse).setMousePosition(mouseX, mouseY);
+            });
+        });
+
         ClientPlayNetworking.registerGlobalReceiver(LibzServerPacket.SYNC_CONFIG_PACKET, (client, handler, buf, sender) -> {
             String configName = buf.readString();
             boolean gson = buf.readBoolean();

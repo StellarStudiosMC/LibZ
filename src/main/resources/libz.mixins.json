@@ -12,7 +12,8 @@
   "client": [
     "client.InventoryScreenMixin",
     "client.HandledScreenMixin",
-    "client.IntegratedServerLoaderMixin"
+    "client.IntegratedServerLoaderMixin",
+    "client.MouseMixin"
   ],
   "injectors": {
     "defaultRequire": 1
