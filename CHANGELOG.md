@@ -1,6 +1,7 @@
 ### Added:
-- 
+- Added config sync api
+- Added mouse positioner
 ### Fixed:
 - 
 ### Changed:
-- Updated to mc 1.20.1
+- 
