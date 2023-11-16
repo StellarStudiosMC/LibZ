@@ -24,6 +24,12 @@
     ],
     "modmenu": [
       "net.libz.config.ModMenuIntegration"
+    ],
+    "emi": [
+      "net.libz.compat.LibzEmiPlugin"
+    ],
+    "rei_client": [
+      "net.libz.compat.LibzReiPlugin"
     ]
   },
   "mixins": [
