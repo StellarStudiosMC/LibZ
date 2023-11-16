@@ -9,6 +9,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+/**
+ * InventoryTab class to be extended to create a new tab for a screen.
+ * 
+ * <p>
+ * Register with the TabRegistry.
+ *
+ * @version 1.0
+ */
 @Environment(EnvType.CLIENT)
 public class InventoryTab {
 
@@ -18,6 +26,14 @@ public class InventoryTab {
     private final Identifier texture;
     private final int preferedPos;
 
+    /**
+     * Constructor to create a new inventory tab.
+     * 
+     * @param title         Text to be rendered on tab hover.
+     * @param texture       Identifier of the tab icon texture which has a size of 14x14.
+     * @param preferedPos   Number of the prefered position. 0 = far left.
+     * @param screenClasses Screen class list of the inventory tab screen.
+     */
     public InventoryTab(Text title, @Nullable Identifier texture, int preferedPos, Class<?>... screenClasses) {
         this.screenClasses = screenClasses;
         this.title = title;

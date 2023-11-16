@@ -16,6 +16,20 @@ import net.minecraft.text.Text;
 @Environment(EnvType.CLIENT)
 public class DrawTabHelper {
 
+    /**
+     * Draw a tab on top of a screen.
+     * 
+     * <p>
+     * Required to call on client only screens. Not required on handled screens.
+     *
+     * @param client      A MinecraftClient instance.
+     * @param context     The DrawContext of the render method.
+     * @param screenClass The screen class (not the parent).
+     * @param x           The left position of the screen.
+     * @param y           The top position of the screen.
+     * @param mouseX      The x mouse position.
+     * @param mouseY      The y mouse position.
+     */
     public static void drawTab(MinecraftClient client, DrawContext context, Screen screenClass, int x, int y, int mouseX, int mouseY) {
         if (client != null && client.player != null && ConfigInit.CONFIG.inventoryButton && (Object) screenClass instanceof Tab) {
 
@@ -64,6 +78,20 @@ public class DrawTabHelper {
         }
     }
 
+    /**
+     * Tab button click method. Call it at mouseClicked method.
+     * 
+     * <p>
+     * Required to call on client only screens. Not required on handled screens.
+     *
+     * @param client      A MinecraftClient instance.
+     * @param screenClass The screen class (not the parent).
+     * @param x           The left position of the screen.
+     * @param y           The top position of the screen.
+     * @param mouseX      The x mouse position.
+     * @param mouseY      The y mouse position.
+     * @param focused     If another child is focused.
+     */
     public static void onTabButtonClick(MinecraftClient client, Screen screenClass, int x, int y, double mouseX, double mouseY, boolean focused) {
         if (client != null && ConfigInit.CONFIG.inventoryButton && !focused && screenClass instanceof Tab) {
             int xPos = x;

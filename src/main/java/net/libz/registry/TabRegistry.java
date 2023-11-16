@@ -9,9 +9,19 @@ import net.libz.LibzClient;
 import net.libz.api.*;
 import net.libz.util.SortList;
 
+/**
+ * Class to register tabs for screens. Use only on the client.
+ *
+ * @version 1.0
+ */
 @Environment(EnvType.CLIENT)
 public class TabRegistry {
 
+    /**
+     * Registers a player inventory tab.
+     *
+     * @param tab An instance of an InventoryTab class.
+     */
     public static void registerInventoryTab(InventoryTab tab) {
         LibzClient.inventoryTabs.add(tab);
         // Sort prefered pos
@@ -26,6 +36,16 @@ public class TabRegistry {
         SortList.concurrentSort(priorityList, LibzClient.inventoryTabs);
     }
 
+    /**
+     * Registers a tab for all screens.
+     * 
+     * <p>
+     * Handled screens do not need to call DrawTabHelper.drawTab on the render method and DrawTabHelper.onTabButtonClick on the mouseClicked method. Client screens need to call DrawTabHelper.drawTab
+     * on the render method and DrawTabHelper.onTabButtonClick on the mouseClicked method.
+     * 
+     * @param tab         An instance of an InventoryTab class.
+     * @param parentClass The parent class of the screen class where the tab will get added.
+     */
     public static void registerOtherTab(InventoryTab tab, Class<?> parentClass) {
         if (LibzClient.otherTabs.get(parentClass) != null) {
             LibzClient.otherTabs.get(parentClass).add(tab);
