@@ -6,7 +6,6 @@
   "plugin": "net.libz.mixin.LibzMixinPlugin",
   "mixins": [
     "config.AutoConfigAccess",
-    "config.PlayerManagerMixin",
     "config.MarshallerImplMixin"
   ],
   "client": [

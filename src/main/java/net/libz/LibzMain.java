@@ -10,6 +10,7 @@ public class LibzMain implements ModInitializer {
     public void onInitialize() {
         ConfigInit.init();
         LibzServerPacket.init();
+        EventInit.init();
     }
 
 }
