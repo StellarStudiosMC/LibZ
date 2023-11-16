@@ -1,6 +1,5 @@
 ### Added:
-- Added config sync api
-- Added mouse positioner
+- Added emi compat
 ### Fixed:
 - 
 ### Changed:
