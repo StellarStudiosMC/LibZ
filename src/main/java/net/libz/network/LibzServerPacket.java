@@ -3,7 +3,7 @@ package net.libz.network;
 import io.netty.buffer.Unpooled;
 import net.libz.util.ConfigHelper;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
+import net.minecraft.network.packet.s2c.common.CustomPayloadS2CPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
@@ -22,19 +22,21 @@ public class LibzServerPacket {
 
         if (bytes != null) {
             PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+            buf.writeIdentifier(SYNC_CONFIG_PACKET);
             buf.writeString(configName);
             buf.writeBoolean(gson);
             buf.writeBytes(bytes);
-            CustomPayloadS2CPacket packet = new CustomPayloadS2CPacket(SYNC_CONFIG_PACKET, buf);
+            CustomPayloadS2CPacket packet = new CustomPayloadS2CPacket(buf);
             serverPlayNetworkHandler.sendPacket(packet);
         }
     }
 
     public static void writeS2CMousePositionPacket(ServerPlayerEntity serverPlayerEntity, int mouseX, int mouseY) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+        buf.writeIdentifier(SET_MOUSE_POSITION);
         buf.writeInt(mouseX);
         buf.writeInt(mouseY);
-        CustomPayloadS2CPacket packet = new CustomPayloadS2CPacket(SET_MOUSE_POSITION, buf);
+        CustomPayloadS2CPacket packet = new CustomPayloadS2CPacket(buf);
         serverPlayerEntity.networkHandler.sendPacket(packet);
     }
 
